@@ -23,6 +23,16 @@ namespace FilmesAPI.Data
                 .HasForeignKey(cinema => cinema.GerenteId);
             //.HasForeignKey(cinema => cinema.GerenteId).IsRequired(false);
             //.OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.Filme)
+                .WithMany(filme => filme.Sessoes)
+                .HasForeignKey(sessao => sessao.FilmeId);
+
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.Cinema)
+                .WithMany(cinema => cinema.Sessoes)
+                .HasForeignKey(sessao => sessao.CinemaId);
         }
 
         public DbSet<Filme> Filmes { get; set; }
@@ -32,5 +42,11 @@ namespace FilmesAPI.Data
         public DbSet<Endereco> Enderecos { get; set; }
 
         public DbSet<Gerente> Gerentes { get; set; }
+
+        public DbSet<Sessao> Sessoes { get; set; }
+
+        //tarefas pendentes 02/05/2022
+        // executar Add-Migration "Criando Sessoes"
+        // executar Update-Database para atualizar tudo.
     }
 }
