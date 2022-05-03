@@ -2,6 +2,8 @@
 using FilmesAPI.Data;
 using FilmesAPI.Data.Dtos;
 using FilmesAPI.Models;
+using FilmesAPI.Services;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,54 +15,39 @@ namespace FilmesAPI.Controllers
     [Route("[controller]")]
     public class CinemaController : ControllerBase
     {
-        private AppDbContext _context;
-        private IMapper _mapper;
+        private CinemaService _cinemaService;
 
-        public CinemaController(AppDbContext context, IMapper mapper)
+        public CinemaController(CinemaService cinemaService)
         {
-            _context = context;
-            _mapper = mapper;
+            _cinemaService = cinemaService;
         }
         
         [HttpPost]
         public IActionResult AdicionaCinema([FromBody] CreateCinemaDto cinemaDto)
         {
-            Cinema cinema = _mapper.Map<Cinema>(cinemaDto);
-            _context.Cinemas.Add(cinema);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(RecuperaCinemaPorId), new { Id = cinema.Id }, cinema);
+            ReadCinemaDto createDto = _cinemaService.AdicionaCinema(cinemaDto);            
+            return CreatedAtAction(nameof(RecuperaCinemaPorId), new { Id = createDto.Id }, createDto);
         }
 
         [HttpGet]
         public IActionResult RecuperaCinemas([FromQuery] string nomeDoFilme)
         {
-            List<Cinema> cinemas = _context.Cinemas.ToList();
-            if (cinemas == null)
-            {   
-                return NotFound();
-            }
-            if (!string.IsNullOrEmpty(nomeDoFilme))
-            {
-                IEnumerable<Cinema> query = from cinema in cinemas
-                                            where cinema.Sessoes.Any(sessao =>
-                                            sessao.Filme.Titulo == nomeDoFilme)
-                                            select cinema;
-                cinemas = query.ToList();
-            }
-            List<ReadCinemaDto> readDto = _mapper.Map<List<ReadCinemaDto>>(cinemas);
+            List<ReadCinemaDto> cinemas = _cinemaService.RecuperaCinemas(nomeDoFilme);
+            
+            if(cinemas.Any())
+                return Ok(cinemas);
+            return NotFound();
 
-            return Ok(readDto);
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult RecuperaCinemaPorId(int id)
         {
-            Cinema cinema = obterCinemaPorId(id);
-
-            if (cinema != null)
-            {
-                ReadCinemaDto cinemaDto = _mapper.Map<ReadCinemaDto>(cinema);                
+            ReadCinemaDto cinemaDto = _cinemaService.RecuperaCinemaPorId(id);
+           
+            if (cinemaDto != null)
+            {               
                 return Ok(cinemaDto);
             }
             return NotFound();
@@ -71,37 +58,23 @@ namespace FilmesAPI.Controllers
         [Route("{id}")]
         public IActionResult AtualizaCinema(int id, [FromBody] UpdateCinemaDto cinemaDto)
         {
-            Cinema cinema = obterCinemaPorId(id);
-
-            if (cinema != null)
-            {
-                cinema = _mapper.Map(cinemaDto, cinema);
-                _context.SaveChanges();
-                return NoContent();
-            }
+            Result resultado = _cinemaService.AtualizaCinema(id, cinemaDto);
+            
+            if (resultado.IsFailed)
+                return NoContent();            
             return NotFound();
-
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IActionResult DeletaCinema(int id)
         {
-            Cinema cinema = obterCinemaPorId(id);
+            Result resultado = _cinemaService.DeletaCinema(id);           
 
-            if (cinema != null)
-            {
-                _context.Remove(cinema);
-                _context.SaveChanges();
-                return NoContent();
-            }
+            if (resultado.IsFailed)            
+                return NoContent();           
             return NotFound();
-
         }
 
-        private Cinema obterCinemaPorId(int id)
-        {
-            return _context.Cinemas.FirstOrDefault(f => f.Id == id);
-        }
     }
 }
