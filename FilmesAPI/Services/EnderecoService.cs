@@ -9,83 +9,83 @@ using System.Linq;
 
 namespace FilmesAPI.Services
 {
-    public class GerenteService
+    public class EnderecoService
     {
         private AppDbContext _context;
         private IMapper _mapper;
 
-        public GerenteService(AppDbContext context, IMapper mapper)
+        public EnderecoService(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public ReadGerenteDto AdicionaGerente(CreateGerenteDto gerenteDto)
+        public ReadGerenteDto AdicionaEndereco(CreateEnderecoDto enderecoDto)
         {
-            Gerente gerente = _mapper.Map<Gerente>(gerenteDto);
-            _context.Gerentes.Add(gerente);
+            Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
+            _context.Enderecos.Add(endereco);
             _context.SaveChanges();
 
-            return _mapper.Map<ReadGerenteDto>(gerente);
+            return _mapper.Map<ReadEnderecoDto>(endereco);
         }
 
-        public List<ReadGerenteDto> RecuperaGerentes()
+        public List<ReadEnderecoDto> RecuperaEnderecos()
         {
-            List<Gerente> gerentes;
+            List<Endereco> enderecos;
 
-            gerentes = _context.Gerentes.ToList();
+            enderecos = _context.Enderecos.ToList();
 
-            if (gerentes.Any())
+            if (enderecos.Any())
             {
-                List<ReadGerenteDto> readDto = _mapper.Map<List<ReadGerenteDto>>(gerentes);
+                List<ReadEnderecoDto> readDto = _mapper.Map<List<ReadEnderecoDto>>(enderecos);
                 return readDto;
             }
 
             return null;
         }
 
-        public ReadGerenteDto RecuperaGerentePorId(int id)
+        public ReadEnderecoDto RecuperaEnderecoPorId(int id)
         {
-            Gerente gerente = ObterGerentePorId(id);
+            Endereco endereco = ObterEnderecoPorId(id);
 
-            if (gerente != null)
+            if (endereco != null)
             {
-                ReadGerenteDto gerenteDto = _mapper.Map<ReadGerenteDto>(gerente);                
-                return gerenteDto;
+                ReadEnderecoDto enderecoDto = _mapper.Map<ReadEnderecoDto>(endereco);                
+                return enderecoDto;
             }
             return null;
         }
-        public Result AtualizaGerente(int id, UpdateGerenteDto gerenteDto)
+        public Result AtualizaEndereco(int id, UpdateEnderecoDto enderecoDto)
         {
-            Gerente gerente = ObterGerentePorId(id);
+            Endereco endereco = ObterEnderecoPorId(id);
 
-            if (gerente != null)
+            if (endereco != null)
             {
-                gerente = _mapper.Map(gerenteDto, gerente);
+                endereco = _mapper.Map(enderecoDto, endereco);
                 _context.SaveChanges();
                 return Result.Ok();
             }
-            return Result.Fail("Gerente não encontrado");
+            return Result.Fail("Endereco não encontrado");
         }
 
-        public Result DeletaGerente(int id)
+        public Result DeletaEndereco(int id)
         {
-            Gerente gerente = ObterGerentePorId(id);
+            Endereco endereco = ObterEnderecoPorId(id);
 
-            if (gerente != null)
+            if (endereco != null)
             {
-                _context.Remove(gerente);
+                _context.Remove(endereco);
                 _context.SaveChanges();
                 return Result.Ok();
             }
 
-            return Result.Fail("Gerente não encontrado");
+            return Result.Fail("Endereco não encontrado");
         }
 
 
-        private Gerente ObterGerentePorId(int id)
+        private Endereco ObterEnderecoPorId(int id)
         {
-            return _context.Gerentes.FirstOrDefault(f => f.Id == id);
+            return _context.Enderecos.FirstOrDefault(f => f.Id == id);
         }
     }
 }
