@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/PEODUPAKkc7zmQerhj60dsr9OnC5u88RRyE/i4+GXi4cewe6xMAjy5cwy5ZDY/8cIhwwz1nIJUezWadNaaA4w==",
+  "dgSpecHash": "kAIx/NmLouuz6pVv4bKLQr2Nhp0TP9qyXH7dRLLUsa0GY5lxJrkHNIjdYPmHIKd56kfoqaOWTQMoK+TKZvDLjw==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\bruna\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\bruna\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\bruna\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
+    "C:\\Users\\bruna\\.nuget\\packages\\fluentresults\\2.5.0\\fluentresults.2.5.0.nupkg.sha512",
     "C:\\Users\\bruna\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\bruna\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\bruna\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
