@@ -1,8 +1,7 @@
-using FilmesAPI.Data;
-using FilmesAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,8 +13,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UsuariosAPI.Data;
+using UsuariosAPI.Services;
 
-namespace FilmesAPI
+namespace UsuariosAPI
 {
     public class Startup
     {
@@ -29,23 +30,19 @@ namespace FilmesAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //connection string db
-            services.AddDbContext<AppDbContext>(opts => opts.UseLazyLoadingProxies().UseMySQL(Configuration.GetConnectionString("AppConnection")));
-            
+            services.AddDbContext<UserDbContext>(opts => 
+                opts.UseLazyLoadingProxies().UseMySQL(Configuration.GetConnectionString("UsuarioConnection"))
+            );
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
+                .AddEntityFrameworkStores<UserDbContext>();
             services.AddControllers();
-            
-            //services 
-            services.AddScoped<FilmeService, FilmeService>();
-            services.AddScoped<CinemaService, CinemaService>();
-            services.AddScoped<EnderecoService, EnderecoService>();
-            services.AddScoped<GerenteService, GerenteService>();
-            services.AddScoped<SessaoService, SessaoService>();
-            
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FilmesAPI", Version = "v1" });
-            });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<UsuarioService, UsuarioService>();
+
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "UsuariosAPI", Version = "v1" });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +52,7 @@ namespace FilmesAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FilmesAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UsuariosAPI v1"));
             }
 
             app.UseHttpsRedirection();

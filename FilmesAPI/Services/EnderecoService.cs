@@ -20,7 +20,7 @@ namespace FilmesAPI.Services
             _mapper = mapper;
         }
 
-        public ReadGerenteDto AdicionaEndereco(CreateEnderecoDto enderecoDto)
+        public ReadEnderecoDto AdicionaEndereco(CreateEnderecoDto enderecoDto)
         {
             Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
             _context.Enderecos.Add(endereco);
