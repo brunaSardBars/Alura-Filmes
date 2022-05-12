@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentResults;
+using Microsoft.AspNetCore.Mvc;
 using UsuariosAPI.Data.Dtos;
+using UsuariosAPI.Data.Requests;
 using UsuariosAPI.Services;
 
 namespace UsuariosAPI.Controllers
@@ -8,29 +10,30 @@ namespace UsuariosAPI.Controllers
     [ApiController]
     public class CadastroController : ControllerBase
     {
-        private readonly UsuarioService _usuarioService;
+        private readonly CadastroService _cadastroService;
 
-        public CadastroController(UsuarioService usuarioService)
+        public CadastroController(CadastroService cadastroService)
         {
-            _usuarioService = usuarioService;
+            _cadastroService = cadastroService;
         }
 
         [HttpPost]
         public IActionResult CadastraUsuario([FromBody] CreateUsuarioDto createDto)
         {
-            ReadUsuarioDto readDto = _usuarioService.CadastraUsuario(createDto);
-            return CreatedAtAction(nameof(RecuperaUsuarioPorId), new { Id = readDto.Id }, readDto);
-        }
-
-        [HttpGet]
-        public IActionResult RecuperaUsuarioPorId([FromQuery] int id)
+            Result resultado = _cadastroService.CadastraUsuario(createDto);
+            if (resultado.IsFailed)
+                return StatusCode(500);
+            return Ok(resultado.Successes);
+        }  
+        
+        [HttpPost("/ativa")]
+        public IActionResult AtivaContaUsuario(AtivaContaRequest request)
         {
-            ReadUsuarioDto readDto = _usuarioService.RecuperaEnderecoPorId(id);
-
-            if (readDto != null)
-                return Ok(readDto);
-
-            return NotFound();
+            Result resultado = _cadastroService.AtivaContaUsuario(request);
+            if (resultado.IsFailed)
+                return StatusCode(500);
+            return Ok(resultado.Successes);
         }
+
     }
 }

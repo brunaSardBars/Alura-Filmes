@@ -30,14 +30,32 @@ namespace UsuariosAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserDbContext>(opts => 
+            //db connect
+            services.AddDbContext<UserDbContext>(opts =>
                 opts.UseLazyLoadingProxies().UseMySQL(Configuration.GetConnectionString("UsuarioConnection"))
             );
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
-                .AddEntityFrameworkStores<UserDbContext>();
+
+            // identity configs
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(opts => 
+                {
+                    opts.SignIn.RequireConfirmedEmail = true;
+                })
+                .AddEntityFrameworkStores<UserDbContext>()
+                .AddDefaultTokenProviders(); ;
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 8;
+            });
+
+            // imports
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<UsuarioService, UsuarioService>();
+            services.AddScoped<CadastroService, CadastroService>();
+            services.AddScoped<LoginService, LoginService>();
+            services.AddScoped<TokenService, TokenService>();
+            services.AddScoped<LogoutService, LogoutService>();
 
             //services.AddSwaggerGen(c =>
             //{
