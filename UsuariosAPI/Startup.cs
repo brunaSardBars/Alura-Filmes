@@ -39,6 +39,7 @@ namespace UsuariosAPI
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(opts => 
                 {
                     opts.SignIn.RequireConfirmedEmail = true;
+                    opts.Stores.MaxLengthForKeys = 85;
                 })
                 .AddEntityFrameworkStores<UserDbContext>()
                 .AddDefaultTokenProviders(); ;
@@ -56,11 +57,12 @@ namespace UsuariosAPI
             services.AddScoped<LoginService, LoginService>();
             services.AddScoped<TokenService, TokenService>();
             services.AddScoped<LogoutService, LogoutService>();
+            services.AddScoped<EmailService, EmailService>();
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "UsuariosAPI", Version = "v1" });
-            //});
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UsuariosAPI", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

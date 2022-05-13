@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj": {}
+    "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj": {
+    "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj",
+        "projectUniqueName": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj",
         "projectName": "FilmesAPI",
-        "projectPath": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj",
-        "packagesPath": "C:\\Users\\Bruna\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\obj\\",
+        "projectPath": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj",
+        "packagesPath": "C:\\Users\\bruna\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bruna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bruna\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
