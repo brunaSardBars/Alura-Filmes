@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj": {}
+    "C:\\Projects\\Alura-Filmes\\UsuariosAPI\\UsuariosAPI.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj": {
+    "C:\\Projects\\Alura-Filmes\\UsuariosAPI\\UsuariosAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj",
-        "projectName": "FilmesAPI",
-        "projectPath": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj",
+        "projectUniqueName": "C:\\Projects\\Alura-Filmes\\UsuariosAPI\\UsuariosAPI.csproj",
+        "projectName": "UsuariosAPI",
+        "projectPath": "C:\\Projects\\Alura-Filmes\\UsuariosAPI\\UsuariosAPI.csproj",
         "packagesPath": "C:\\Users\\Bruna\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\obj\\",
+        "outputPath": "C:\\Projects\\Alura-Filmes\\UsuariosAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bruna\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,11 +42,19 @@
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[11.0.0, )"
             },
             "FluentResults": {
               "target": "Package",
               "version": "[2.5.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -62,6 +70,10 @@
               "target": "Package",
               "version": "[5.0.5, )"
             },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
             "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.3, )"
@@ -69,6 +81,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.12.0, )"
             }
           },
           "imports": [
