@@ -44,9 +44,5 @@ namespace FilmesAPI.Data
         public DbSet<Gerente> Gerentes { get; set; }
 
         public DbSet<Sessao> Sessoes { get; set; }
-
-        //tarefas pendentes 02/05/2022
-        // executar Add-Migration "Criando Sessoes"
-        // executar Update-Database para atualizar tudo.
     }
 }

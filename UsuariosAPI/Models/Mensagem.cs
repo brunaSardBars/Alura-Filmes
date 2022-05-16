@@ -13,7 +13,7 @@ namespace UsuariosAPI.Models
         public Mensagem(IEnumerable<string> destinatario, string assunto, int usuarioId, string codigoDeAtivacao)
         {
             Destinatario = new List<MailboxAddress>();
-            Destinatario.AddRange(destinatario.Select(d => new MailboxAddress(d)));
+            Destinatario.AddRange(destinatario.Select(d => new MailboxAddress("name", d)));
             Assunto = assunto;
             Conteudo = $"http://localhost:6000/ativa?UsuarioId={usuarioId}&CodigoDeAtivacao={codigoDeAtivacao}";
         }

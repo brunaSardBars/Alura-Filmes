@@ -13,5 +13,8 @@ namespace FilmesAPI.Data.Dtos
         public string Genero { get; set; }
         [Range(1, 600, ErrorMessage = "O tempo de duração deve estar entre 1 e 600 minutos")]
         public int Duracao { get; set; }
+
+        [Range(1, 18, ErrorMessage = "Classificacao Etaria deve estar entre 1 e 18 minutos")]
+        public int ClassificacaoEtaria { get; set; }
     }
 }
