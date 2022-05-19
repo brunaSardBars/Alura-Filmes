@@ -8195,19 +8195,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bruna\\.nuget\\packages\\": {}
+    "C:\\Users\\Bruna\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj",
+      "projectUniqueName": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj",
       "projectName": "FilmesAPI",
-      "projectPath": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\FilmesAPI.csproj",
-      "packagesPath": "C:\\Users\\bruna\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\FilmesAPI\\obj\\",
+      "projectPath": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\FilmesAPI.csproj",
+      "packagesPath": "C:\\Users\\Bruna\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\Alura-Filmes\\FilmesAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bruna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bruna\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8221,8 +8221,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\UsuariosAPI\\UsuariosAPI.csproj": {
-              "projectPath": "C:\\Projetos\\Alura\\WebApi\\FilmesAPI\\UsuariosAPI\\UsuariosAPI.csproj"
+            "C:\\Projects\\Alura-Filmes\\UsuariosAPI\\UsuariosAPI.csproj": {
+              "projectPath": "C:\\Projects\\Alura-Filmes\\UsuariosAPI\\UsuariosAPI.csproj"
             }
           }
         }

@@ -1,12 +1,20 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 
 namespace UsuariosAPI.Data
 {
     public class UserDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
     {
+        private IConfiguration _configuration;
+
+        public UserDbContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public UserDbContext(DbContextOptions<UserDbContext> opt) : base(opt)
         {
 
@@ -28,13 +36,21 @@ namespace UsuariosAPI.Data
                 Id = 99999
             };
             PasswordHasher<IdentityUser<int>> hasher = new PasswordHasher<IdentityUser<int>>();
-            admin.PasswordHash = hasher.HashPassword(admin, "Admin123!");
+            admin.PasswordHash = hasher.HashPassword(admin, _configuration.GetValue<string>("admininfo:password"));
 
             modelBuilder.Entity<IdentityUser<int>>().HasData(admin);
 
             modelBuilder.Entity<IdentityRole<int>>().HasData(
                 new IdentityRole<int> { Id = 99999, Name = "admin", NormalizedName = "ADMIN" }
             );
+
+            modelBuilder.Entity<IdentityRole<int>>().HasData(
+                new IdentityRole<int> { Id = 99997, Name = "regular", NormalizedName = "REGULAR" }
+            );
+
+            // TODO
+            // EXECUTAR ADD-MIGRATION "CRIANDO ROLE REGULAR"
+            // EXECUTAR UPDATE-DATABASE
 
             modelBuilder.Entity<IdentityUserRole<int>>().HasData(
                 new IdentityUserRole<int> { RoleId = 99999, UserId = 99999 }
