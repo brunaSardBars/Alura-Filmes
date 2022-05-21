@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UsuariosAPI.Data;
+using UsuariosAPI.Models;
 using UsuariosAPI.Services;
 
 namespace UsuariosAPI
@@ -36,7 +37,7 @@ namespace UsuariosAPI
             );
 
             // identity configs
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(opts => 
+            services.AddIdentity<CustomIdentityUser, IdentityRole<int>>(opts => 
                 {
                     opts.SignIn.RequireConfirmedEmail = true;
                     opts.Stores.MaxLengthForKeys = 85;
